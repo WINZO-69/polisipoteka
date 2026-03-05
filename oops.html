@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ошибка оплаты — Ипотечный Брокер</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #0d1b3e;
+      color: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .container {
+      text-align: center;
+      padding: 40px 20px;
+      max-width: 600px;
+    }
+
+    h1 {
+      font-size: 28px;
+      font-weight: 400;
+      margin-bottom: 16px;
+      line-height: 1.4;
+    }
+
+    p {
+      font-size: 16px;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 40px;
+      line-height: 1.6;
+    }
+
+    .divider {
+      width: 60px;
+      height: 2px;
+      background: #FF6B35;
+      margin: 0 auto 32px;
+    }
+
+    .social-label {
+      font-size: 14px;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 20px;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+      transition: transform 0.2s, filter 0.2s;
+      text-decoration: none;
+    }
+
+    .social-links a:hover {
+      transform: scale(1.2);
+      filter: brightness(0.7);
+    }
+
+    .social-links img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+    }
+
+    .btn-home {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 14px 32px;
+      background: #FF6B35;
+      color: #ffffff;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 600;
+      font-family: 'Montserrat', sans-serif;
+      transition: opacity 0.2s;
+    }
+
+    .btn-home:hover {
+      opacity: 0.85;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <h1>Что-то пошло не так</h1>
+
+    <div class="divider"></div>
+
+    <p>Не удалось завершить оформление полиса.<br>
+    Напишите брокеру — поможем разобраться.</p>
+
+    <div class="social-label">Связаться с брокером</div>
+
+    <div class="social-links">
+      <a href="https://t.me/MK110823" target="_blank" title="Telegram">
+        <img src="Photo/tg.svg" alt="Telegram">
+      </a>
+      <a href="https://vk.com/id191222553" target="_blank" title="ВКонтакте">
+        <img src="Photo/vk.svg" alt="ВКонтакте">
+      </a>
+      <a href="https://max.ru/u/f9LHodD0cOJerK0iHZBy7Q2KNw82U9mB5UShgKXVx-h-RlGoqxGjsyQOY3A" target="_blank" title="Max">
+        <img src="Photo/max.svg" alt="Max">
+      </a>
+    </div>
+
+    <a href="/" class="btn-home">Вернуться на главную</a>
+
+  </div>
+</body>
+</html>
