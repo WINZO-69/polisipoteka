@@ -88,9 +88,25 @@ submitBtn.addEventListener('click', () => {
   }
 
   consentError.classList.remove('visible');
-
-  // Здесь твоя логика отправки (например fetch на сервер)
-  submitBtn.textContent = 'Заявка отправлена!';
   submitBtn.disabled = true;
-  setTimeout(() => closePopup(), 2000);
+  submitBtn.textContent = 'Отправляем...';
+
+  fetch('https://api.web3forms.com/submit', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      access_key: '31420c21-8285-4c7d-b853-a6c003ab0237',
+      subject: 'Новая заявка с polisipoteka.ru',
+      phone: phoneInput.value
+    })
+  })
+  .then(res => res.json())
+  .then(() => {
+    submitBtn.textContent = 'Заявка отправлена!';
+    setTimeout(() => closePopup(), 2000);
+  })
+  .catch(() => {
+    submitBtn.textContent = 'Ошибка, попробуйте снова';
+    submitBtn.disabled = false;
+  });
 });
