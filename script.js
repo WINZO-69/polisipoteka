@@ -15,6 +15,11 @@ document.querySelectorAll('.btn--primary').forEach(btn => {
   });
 });
 
+// Скролл до виджета по кнопке "Оформить онлайн"
+document.querySelector('.btn--outline').addEventListener('click', () => {
+  document.getElementById('widget').scrollIntoView({ behavior: 'smooth' });
+});
+
 // Закрытие
 closeBtn.addEventListener('click', closePopup);
 overlay.addEventListener('click', (e) => {
