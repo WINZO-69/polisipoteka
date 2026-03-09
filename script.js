@@ -107,6 +107,9 @@ submitBtn.addEventListener('click', () => {
   })
   .then(res => res.json())
   .then(() => {
+    //
+    ym(107139628, 'reachGoal', 'form_submit');
+    
     submitBtn.textContent = 'Заявка отправлена!';
     setTimeout(() => closePopup(), 2000);
   })
