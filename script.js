@@ -34,7 +34,7 @@ function closePopup() {
   phoneInput.value = '';
   phoneInput.classList.remove('error');
   phoneError.classList.remove('visible');
-  consentCheckbox.checked = true;
+  consentCheckbox.checked = false;
   consentError.classList.remove('visible');
   submitBtn.disabled = false;
   submitBtn.textContent = 'Отправить';
