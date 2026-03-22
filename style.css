@@ -553,33 +553,43 @@ body {
 }
 
 /* ─── ПЛАВАЮЩАЯ КНОПКА СВЯЗИ ─── */
-.contact-widget {
+.contact-widget-wrapper {
   position: fixed;
   bottom: 30px;
-  right: 20px;
+  left: 0;
+  right: 0;
   z-index: 900;
+  pointer-events: none;
+}
+
+.contact-widget {
+  width: 100%;
+  max-width: 1377px;
+  margin: 0 auto;
+  padding: 0 20px;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  pointer-events: none;
 }
 
-@media (min-width: 1377px) {
-  .contact-widget {
-    right: calc((100vw - 1377px) / 2 + 20px);
-  }
+.contact-panel,
+.contact-widget__toggle {
+  pointer-events: auto;
 }
 
 @media (max-width: 1024px) and (min-width: 481px) {
   .contact-widget {
-    right: 50px;
+    padding: 0 50px;
   }
 }
 
 @media (max-width: 480px) {
   .contact-widget {
-    right: 20px;
+    padding: 0 20px;
   }
 }
+
 
 .contact-widget__toggle {
   background: none;
