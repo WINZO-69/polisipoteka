@@ -118,3 +118,22 @@ submitBtn.addEventListener('click', () => {
     submitBtn.disabled = false;
   });
 });
+
+// ─── ПЛАВАЮЩАЯ КНОПКА СВЯЗИ ───
+const contactToggle = document.getElementById('contactWidgetToggle');
+const contactIcon = document.getElementById('contactWidgetIcon');
+const contactPanel = document.getElementById('contactPanel');
+const contactPhoneBtn = document.getElementById('contactPhoneBtn');
+
+contactToggle.addEventListener('click', () => {
+  const isOpen = contactPanel.classList.contains('active');
+  contactPanel.classList.toggle('active');
+  contactIcon.src = isOpen ? 'Photo/Right_icon.svg' : 'Photo/cross.svg';
+});
+
+contactPhoneBtn.addEventListener('click', () => {
+  contactPanel.classList.remove('active');
+  contactIcon.src = 'Photo/Right_icon.svg';
+  overlay.classList.add('active');
+  phoneInput.focus();
+});

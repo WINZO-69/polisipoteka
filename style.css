@@ -551,3 +551,122 @@ body {
   .popup__input { font-size: 18px; padding: 12px 16px; }
   .popup__submit { font-size: 16px; padding: 13px 16px; }
 }
+
+/* ─── ПЛАВАЮЩАЯ КНОПКА СВЯЗИ ─── */
+.contact-widget {
+  position: fixed;
+  bottom: 30px;
+  right: 20px;
+  z-index: 900;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+@media (min-width: 1377px) {
+  .contact-widget {
+    right: calc((100vw - 1377px) / 2 + 20px);
+  }
+}
+
+@media (max-width: 1024px) and (min-width: 481px) {
+  .contact-widget {
+    right: 50px;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-widget {
+    right: 20px;
+  }
+}
+
+.contact-widget__toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+.contact-widget__toggle:hover {
+  transform: scale(1.08);
+}
+
+.contact-widget__toggle img {
+  width: 52px;
+  height: 52px;
+  display: block;
+}
+
+/* Панель */
+.contact-panel {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ffffff;
+  border: 1px solid #FF6B35;
+  border-radius: 12px;
+  padding: 15px;
+  margin-bottom: 10px;
+  gap: 12px;
+  width: 110px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+}
+
+.contact-panel.active {
+  display: flex;
+}
+
+.contact-panel__title,
+.contact-panel__subtitle {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  color: #1a1a1a;
+  text-align: center;
+  line-height: 1.45;
+  margin: 0;
+}
+
+.contact-panel__link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contact-panel__link img {
+  width: 44px;
+  height: 44px;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.contact-panel__link:hover img {
+  transform: scale(1.1);
+  opacity: 0.85;
+}
+
+.contact-panel__phone-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+.contact-panel__phone-btn:hover {
+  transform: scale(1.1);
+}
+
+.contact-panel__phone-btn img {
+  width: 44px;
+  height: 44px;
+  display: block;
+}
