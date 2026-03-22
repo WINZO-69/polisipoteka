@@ -146,3 +146,14 @@ document.addEventListener('click', (e) => {
   }
 });
 
+// Закрытие при клике в iframe (виджет InsSmart)
+window.addEventListener('blur', () => {
+  setTimeout(() => {
+    if (document.activeElement && document.activeElement.tagName === 'IFRAME') {
+      if (contactPanel.classList.contains('active')) {
+        contactPanel.classList.remove('active');
+        contactIcon.src = 'Photo/Right_icon.svg';
+      }
+    }
+  }, 100);
+});
