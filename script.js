@@ -273,8 +273,8 @@ window.addEventListener('scroll', () => {
 
   if (
     speed > 1 &&
-    scrollUpDistance >= 120 &&
-    lastScrollY > document.body.scrollHeight * 0.3 &&
+    scrollUpDistance >= 300 &&
+    lastScrollY > document.body.scrollHeight * 0.5 &&
     !exitShown
   ) {
     exitShown = true;
