@@ -258,14 +258,29 @@ document.addEventListener('mouseleave', (e) => {
 
 let lastScrollY = window.scrollY;
 let lastScrollTime = Date.now();
+let scrollUpDistance = 0;
+
 window.addEventListener('scroll', () => {
   const currentY = window.scrollY;
   const currentTime = Date.now();
   const speed = (lastScrollY - currentY) / (currentTime - lastScrollTime);
-  if (speed > 1 && currentY < lastScrollY && lastScrollY > document.body.scrollHeight * 0.3 && !exitShown) {
+
+  if (currentY < lastScrollY) {
+    scrollUpDistance += lastScrollY - currentY;
+  } else {
+    scrollUpDistance = 0;
+  }
+
+  if (
+    speed > 1 &&
+    scrollUpDistance >= 120 &&
+    lastScrollY > document.body.scrollHeight * 0.3 &&
+    !exitShown
+  ) {
     exitShown = true;
     openExitPopup();
   }
+
   lastScrollY = currentY;
   lastScrollTime = currentTime;
 });
