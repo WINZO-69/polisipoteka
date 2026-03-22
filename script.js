@@ -157,3 +157,115 @@ window.addEventListener('blur', () => {
     }
   }, 100);
 });
+
+// ─── EXIT INTENT ПОПАП ───
+const exitOverlay = document.getElementById('exitPopupOverlay');
+const exitCloseBtn = document.getElementById('exitPopupClose');
+const exitPhoneInput = document.getElementById('exitPhoneInput');
+const exitPhoneError = document.getElementById('exitPhoneError');
+const exitSubmitBtn = document.getElementById('exitPopupSubmit');
+const exitConsentCheckbox = document.getElementById('exitPopupConsent');
+const exitConsentError = document.getElementById('exitConsentError');
+let exitShown = false;
+
+function openExitPopup() {
+  exitOverlay.classList.add('active');
+  exitPhoneInput.focus();
+}
+
+function closeExitPopup() {
+  exitOverlay.classList.remove('active');
+  exitPhoneInput.value = '';
+  exitPhoneInput.classList.remove('error');
+  exitPhoneError.classList.remove('visible');
+  exitConsentCheckbox.checked = false;
+  exitConsentError.classList.remove('visible');
+  exitSubmitBtn.disabled = false;
+  exitSubmitBtn.textContent = 'Отправить';
+}
+
+exitCloseBtn.addEventListener('click', closeExitPopup);
+exitOverlay.addEventListener('click', (e) => { if (e.target === exitOverlay) closeExitPopup(); });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeExitPopup(); });
+
+// Маска телефона
+exitPhoneInput.addEventListener('input', (e) => {
+  let digits = e.target.value.replace(/\D/g, '');
+  if (digits.startsWith('8') || digits.startsWith('7')) digits = digits.slice(1);
+  digits = digits.slice(0, 10);
+  let formatted = '+7';
+  if (digits.length > 0) formatted += ' (' + digits.slice(0, 3);
+  if (digits.length >= 3) formatted += ') ' + digits.slice(3, 6);
+  if (digits.length >= 6) formatted += '-' + digits.slice(6, 8);
+  if (digits.length >= 8) formatted += '-' + digits.slice(8, 10);
+  e.target.value = formatted;
+  exitPhoneInput.classList.remove('error');
+  exitPhoneError.classList.remove('visible');
+});
+
+exitPhoneInput.addEventListener('keydown', (e) => {
+  const allowed = ['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'];
+  if (!allowed.includes(e.key) && !/^\d$/.test(e.key)) e.preventDefault();
+});
+
+exitConsentCheckbox.addEventListener('change', () => {
+  if (exitConsentCheckbox.checked) exitConsentError.classList.remove('visible');
+});
+
+// Валидация и отправка
+exitSubmitBtn.addEventListener('click', () => {
+  const digits = exitPhoneInput.value.replace(/\D/g, '').slice(1);
+  if (digits.length < 10) {
+    exitPhoneInput.classList.add('error');
+    exitPhoneError.classList.add('visible');
+    return;
+  }
+  if (!exitConsentCheckbox.checked) {
+    exitConsentError.classList.add('visible');
+    return;
+  }
+  exitConsentError.classList.remove('visible');
+  exitSubmitBtn.disabled = true;
+  exitSubmitBtn.textContent = 'Отправляем...';
+  fetch('https://api.web3forms.com/submit', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      access_key: '31420c21-8285-4c7d-b853-a6c003ab0237',
+      subject: 'Новая заявка с polisipoteka.ru (exit intent)',
+      phone: exitPhoneInput.value
+    })
+  })
+  .then(res => res.json())
+  .then(() => {
+    ym(107139628, 'reachGoal', 'exit_form_submit');
+    exitSubmitBtn.textContent = 'Заявка отправлена!';
+    setTimeout(() => closeExitPopup(), 2000);
+  })
+  .catch(() => {
+    exitSubmitBtn.textContent = 'Ошибка, попробуйте снова';
+    exitSubmitBtn.disabled = false;
+  });
+});
+
+// Триггеры exit intent
+document.addEventListener('mouseleave', (e) => {
+  if (e.clientY <= 10 && !exitShown) {
+    exitShown = true;
+    openExitPopup();
+  }
+});
+
+let lastScrollY = window.scrollY;
+let lastScrollTime = Date.now();
+window.addEventListener('scroll', () => {
+  const currentY = window.scrollY;
+  const currentTime = Date.now();
+  const speed = (lastScrollY - currentY) / (currentTime - lastScrollTime);
+  if (speed > 1 && currentY < lastScrollY && lastScrollY > document.body.scrollHeight * 0.3 && !exitShown) {
+    exitShown = true;
+    openExitPopup();
+  }
+  lastScrollY = currentY;
+  lastScrollTime = currentTime;
+});

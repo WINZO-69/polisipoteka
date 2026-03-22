@@ -166,6 +166,26 @@
       <span class="popup__consent-error" id="consentError">Необходимо согласие с Политикой конфиденциальности</span>
 
   </div>
+
+  <!-- ПОПАП EXIT INTENT -->
+<div class="popup-overlay" id="exitPopupOverlay">
+  <div class="popup">
+    <button class="popup__close" id="exitPopupClose">&#10005;</button>
+    <p class="popup__title">Остался вопрос? Агент ответит за 15 минут</p>
+    <div class="popup__field">
+      <input class="popup__input" id="exitPhoneInput" type="tel" placeholder="+7 (___) ___-__-__" maxlength="18" autocomplete="off"/>
+      <span class="popup__error" id="exitPhoneError">Проверьте правильность заполнения поля</span>
+    </div>
+    <label class="popup__checkbox-label">
+      <input type="checkbox" class="popup__checkbox" id="exitPopupConsent">
+      <span class="popup__checkbox-box"></span>
+      <span class="popup__checkbox-text">Я согласен на обработку персональных данных и принимаю условия <a href="/privacypolicy" target="_blank" class="popup__checkbox-link">Политики конфиденциальности</a></span>
+    </label>
+    <button class="popup__submit" id="exitPopupSubmit">Отправить</button>
+    <span class="popup__consent-error" id="exitConsentError">Необходимо согласие с Политикой конфиденциальности</span>
+  </div>
+</div>
+
 </div>
 
 <!-- ПЛАВАЮЩАЯ КНОПКА СВЯЗИ -->
