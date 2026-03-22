@@ -249,6 +249,8 @@ exitSubmitBtn.addEventListener('click', () => {
 });
 
 // Триггеры exit intent
+
+// ПК — мышь уходит вверх
 document.addEventListener('mouseleave', (e) => {
   if (e.clientY <= 10 && !exitShown) {
     exitShown = true;
@@ -256,31 +258,12 @@ document.addEventListener('mouseleave', (e) => {
   }
 });
 
-let lastScrollY = window.scrollY;
-let lastScrollTime = Date.now();
-let scrollUpDistance = 0;
-
-window.addEventListener('scroll', () => {
-  const currentY = window.scrollY;
-  const currentTime = Date.now();
-  const speed = (lastScrollY - currentY) / (currentTime - lastScrollTime);
-
-  if (currentY < lastScrollY) {
-    scrollUpDistance += lastScrollY - currentY;
-  } else {
-    scrollUpDistance = 0;
-  }
-
-  if (
-    speed > 1 &&
-    scrollUpDistance >= 300 &&
-    lastScrollY > document.body.scrollHeight * 0.5 &&
-    !exitShown
-  ) {
+// Мобиле/планшет — кнопка назад
+history.pushState(null, '', location.href);
+window.addEventListener('popstate', () => {
+  if (!exitShown) {
     exitShown = true;
+    history.pushState(null, '', location.href);
     openExitPopup();
   }
-
-  lastScrollY = currentY;
-  lastScrollTime = currentTime;
 });
