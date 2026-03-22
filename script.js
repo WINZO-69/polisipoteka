@@ -137,3 +137,12 @@ contactPhoneBtn.addEventListener('click', () => {
   overlay.classList.add('active');
   phoneInput.focus();
 });
+
+document.addEventListener('click', (e) => {
+  const widget = document.getElementById('contactWidget');
+  if (!widget.contains(e.target) && contactPanel.classList.contains('active')) {
+    contactPanel.classList.remove('active');
+    contactIcon.src = 'Photo/Right_icon.svg';
+  }
+});
+
