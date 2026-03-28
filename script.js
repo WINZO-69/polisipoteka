@@ -7,17 +7,17 @@ const submitBtn = document.getElementById('popupSubmit');
 const consentCheckbox = document.getElementById('popupConsent');
 const consentError = document.getElementById('consentError');
 
-// Открытие по кнопке "Оформить через брокера"
+// Скролл до виджета по кнопке "Оформить через агента"
 document.querySelectorAll('.btn--primary').forEach(btn => {
   btn.addEventListener('click', () => {
-    overlay.classList.add('active');
-    phoneInput.focus();
+    document.getElementById('widget').scrollIntoView({ behavior: 'smooth' });
   });
 });
 
-// Скролл до виджета по кнопке "Оформить онлайн"
+// Открытие попапа по кнопке "Оформить онлайн"
 document.querySelector('.btn--outline').addEventListener('click', () => {
-  document.getElementById('widget').scrollIntoView({ behavior: 'smooth' });
+  overlay.classList.add('active');
+  phoneInput.focus();
 });
 
 // Закрытие
